@@ -9,34 +9,25 @@ namespace SimpleEmailLab1
 {
     class Program
     {
-        static string userToken = new Guid().ToString();
-        static string EMAIL_ADDRESS = "dummyemailaddress";
-        static SmtpClient client = new SmtpClient("smtp.gmail.com")
-        {
-            Port = 25,
-            EnableSsl = true,
-            Credentials = new NetworkCredential(EMAIL_ADDRESS, "******"),  //change this info!
-        };
         static void Main(string[] args)
         {
+           
             Console.WriteLine("Welcome to the command line email client!");
             var loop = true;
             while (loop)
             {
                 Console.WriteLine("\nNew Message");
                 Console.Write("To: ");
-                var to = Console.ReadLine();
+                string to = Console.ReadLine();
 
                 Console.Write("Subject: ");
-                var subject = Console.ReadLine();
+                string subject = Console.ReadLine();
 
-                Console.Write("Path to text file of body: ");
-                var filepath = Console.ReadLine();
-                StreamReader reader;
-                if (!string.IsNullOrEmpty(filepath))
+                Console.Write("Body: ");
+                string body = Console.ReadLine();
+                
+                if (!string.IsNullOrEmpty(body))
                 {
-                    reader = File.OpenText(filepath);
-                    var body = reader.ReadToEnd();
                     Console.WriteLine($"Body Text: \n{body}");
                     Console.Write("Are you sure you want to send? (Y/N): ");
                     var key = Console.ReadKey().Key;
@@ -45,19 +36,24 @@ namespace SimpleEmailLab1
                         continue;
                     }
 
-                    var message = new MailMessage()
-                    {
-                        Subject = subject,
-                        From = new MailAddress(EMAIL_ADDRESS),
-                        Body = body,
-                    };
-                    message.To.Add(to);
+                  
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
+                    mail.From = new MailAddress("bhuvanagopal@gmail.com");
+                    mail.To.Add(to);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                  
+                    SmtpServer.Port = 25;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("bhuvanagopal", "*******");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    Console.WriteLine("done!");
                     // Link event handler
-                    client.SendCompleted += new SendCompletedEventHandler(client_SendCompleted);
+                    SmtpServer.SendCompleted += new SendCompletedEventHandler(SmtpServer_SendCompleted);
 
-                    // Send email
-                    client.Send(message);
                     Console.Write("\nWould you like to send another email? (Y/N): ");
                     key = Console.ReadKey().Key;
                     if (key != ConsoleKey.Y)
@@ -65,13 +61,12 @@ namespace SimpleEmailLab1
                         loop = false;
                     }
                 }
-                Console.WriteLine("invalid path to file text! quitting program.....");
-                loop = false;
 
             }
+            
         }
 
-        static void client_SendCompleted(object sender, AsyncCompletedEventArgs e)
+        static void SmtpServer_SendCompleted(object sender, AsyncCompletedEventArgs e)
         {
             // Encourage quick failing
             if (e.Cancelled == true)
