@@ -32,38 +32,42 @@ namespace SimpleEmailLab1
 
                 Console.Write("Path to text file of body: ");
                 var filepath = Console.ReadLine();
-                var reader = File.OpenText(filepath);
-                var body = reader.ReadToEnd();
-                Console.WriteLine($"Body Text: \n{body}");
-
-
-                Console.Write("Are you sure you want to send? (Y/N): ");
-                var key = Console.ReadKey().Key;
-                if (key != ConsoleKey.Y)
+                StreamReader reader;
+                if (!string.IsNullOrEmpty(filepath))
                 {
-                    continue;
+                    reader = File.OpenText(filepath);
+                    var body = reader.ReadToEnd();
+                    Console.WriteLine($"Body Text: \n{body}");
+                    Console.Write("Are you sure you want to send? (Y/N): ");
+                    var key = Console.ReadKey().Key;
+                    if (key != ConsoleKey.Y)
+                    {
+                        continue;
+                    }
+
+                    var message = new MailMessage()
+                    {
+                        Subject = subject,
+                        From = new MailAddress(EMAIL_ADDRESS),
+                        Body = body,
+                    };
+                    message.To.Add(to);
+
+                    // Link event handler
+                    client.SendCompleted += new SendCompletedEventHandler(client_SendCompleted);
+
+                    // Send email
+                    client.Send(message);
+                    Console.Write("\nWould you like to send another email? (Y/N): ");
+                    key = Console.ReadKey().Key;
+                    if (key != ConsoleKey.Y)
+                    {
+                        loop = false;
+                    }
                 }
+                Console.WriteLine("invalid path to file text! quitting program.....");
+                loop = false;
 
-                var message = new MailMessage()
-                {
-                    Subject = subject,
-                    From = new MailAddress(EMAIL_ADDRESS),
-                    Body = body,
-                };
-                message.To.Add(to);
-
-                // Link event handler
-                client.SendCompleted += new SendCompletedEventHandler(client_SendCompleted);
-
-                // Send email
-                client.Send(message);
-
-                Console.Write("\nWould you like to send another email? (Y/N): ");
-                key = Console.ReadKey().Key;
-                if (key != ConsoleKey.Y)
-                {
-                    loop = false;
-                }
             }
         }
 
