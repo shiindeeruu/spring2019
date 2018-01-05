@@ -15,7 +15,6 @@ namespace SimpleEmailLab1
         {
             Port = 25,
             EnableSsl = true,
-            //Credentials = new NetworkCredential(EMAIL_ADDRESS, ConfigurationManager.AppSettings["password"]),
             Credentials = new NetworkCredential(EMAIL_ADDRESS, "******"),  //change this info!
         };
         static void Main(string[] args)
