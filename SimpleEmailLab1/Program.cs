@@ -40,19 +40,24 @@ namespace SimpleEmailLab1
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                    mail.From = new MailAddress("bhuvanagopal@gmail.com");
+                    mail.From = new MailAddress("hshin1950@gmail.com");
                     mail.To.Add(to);
                     mail.Subject = subject;
                     mail.Body = body;
                   
                     SmtpServer.Port = 25;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("bhuvanagopal", "*******");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("hshin1950@gmail.com", "rvzmwraegelotkgx");
                     SmtpServer.EnableSsl = true;
-
+                    
+                    try {
                     SmtpServer.Send(mail);
                     Console.WriteLine("done!");
                     // Link event handler
                     SmtpServer.SendCompleted += new SendCompletedEventHandler(SmtpServer_SendCompleted);
+                    } catch (SmtpException e)
+                    {
+                        Console.WriteLine(e);
+                    }
 
                     Console.Write("\nWould you like to send another email? (Y/N): ");
                     key = Console.ReadKey().Key;
