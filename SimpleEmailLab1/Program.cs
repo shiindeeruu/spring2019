@@ -46,16 +46,19 @@ namespace SimpleEmailLab1
                     mail.Body = body;
                   
                     SmtpServer.Port = 25;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("hshin1950@gmail.com", "rvzmwraegelotkgx");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("hshin1950", "rvzmwraegelotkgx");
                     SmtpServer.EnableSsl = true;
                     
-                    try {
-                    SmtpServer.Send(mail);
-                    Console.WriteLine("done!");
+                    try {  // This try-catch block attempts to send the e-mail
+                        SmtpServer.Send(mail);
+                        Console.WriteLine("done!");
                     // Link event handler
-                    SmtpServer.SendCompleted += new SendCompletedEventHandler(SmtpServer_SendCompleted);
+                        SmtpServer.SendCompleted += new SendCompletedEventHandler(SmtpServer_SendCompleted);
                     } catch (SmtpException e)
-                    {
+                    {   /*
+                         *  if there is an SmtpException such as the e-mail failed to send,
+                         *  then an error message will print out
+                         */
                         Console.WriteLine(e);
                     }
 
@@ -82,7 +85,7 @@ namespace SimpleEmailLab1
 
             if (e.Error != null)
             {
-                Console.Error.WriteLine($"An error occured: {e.Error.Message}");
+                Console.Error.WriteLine($"An error occurred: {e.Error.Message}");
                 return;
             }
             Console.WriteLine("Email sent!");

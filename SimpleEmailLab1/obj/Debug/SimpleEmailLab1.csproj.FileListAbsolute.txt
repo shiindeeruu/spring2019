@@ -4,3 +4,11 @@ C:\Users\bgopal14\Desktop\spring2018\SimpleEmailLab1\bin\Debug\SimpleEmailLab1.p
 C:\Users\bgopal14\Desktop\spring2018\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.csprojResolveAssemblyReference.cache
 C:\Users\bgopal14\Desktop\spring2018\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.exe
 C:\Users\bgopal14\Desktop\spring2018\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.pdb
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\bin\Debug\SimpleEmailLab1.exe.config
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\bin\Debug\SimpleEmailLab1.exe
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\bin\Debug\SimpleEmailLab1.pdb
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.csproj.AssemblyReference.cache
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.csproj.SuggestedBindingRedirects.cache
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.csproj.CoreCompileInputs.cache
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.exe
+C:\Users\14022\Desktop\YEAR 2\SEM 2\CSCE 361 Repos\SimpleEmailLab1\obj\Debug\SimpleEmailLab1.pdb
